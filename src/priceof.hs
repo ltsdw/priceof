@@ -29,11 +29,9 @@ data Props = Props {
     symbol :: !Text
     } deriving Generic
 
-data Res = Res { result :: [Props] } deriving Generic
+newtype Res = Res { result :: [Props] } deriving Generic
 
-data IJSON = IJSON {
-    quoteResponse :: Res
-} deriving Generic
+newtype IJSON = IJSON { quoteResponse :: Res } deriving Generic
 
 instance FromJSON Props
 instance FromJSON Res
@@ -47,7 +45,7 @@ completeUrl = go []
     where
         go _    []       = []
         go !acc [x]      = acc ++ x
-        go !acc (x:xs)   = go (acc ++ x ++ ",") xs--go (x ++ "," ++ acc) $! xs
+        go !acc (x:xs)   = go (acc ++ x ++ ",") xs
 
 createUrl :: [String] -> String
 createUrl = ((("https://query1.finance.yahoo.com/v7/finance/quote?lang=en-US&region=US&corsDomain=finance.yahoo.com&fields=" ++)
@@ -71,7 +69,7 @@ getValues !url =
     go <$> (try $! join $ httpLbs <$> parseRequest url <*> newManager defaultManagerSettings
     :: IO (Either HttpException (Response B.ByteString)))
     where
-        go !(Right v) = decode $! responseBody v :: Maybe IJSON
+        go (Right v) = decode $! responseBody v :: Maybe IJSON
         go _          = Nothing 
 
 printAll :: S.Seq (Text, Double, Double, Double, Text) -> IO ()
@@ -96,7 +94,7 @@ printAll stcks = do
                 pp'' a b = printf "%.2f %s" a b
 
 prittyPrint :: IO (Maybe IJSON) -> IO ()
-prittyPrint = join . (go <$>)
+prittyPrint = (go =<<)
     where
         go v = case v of
             Nothing      -> myerror

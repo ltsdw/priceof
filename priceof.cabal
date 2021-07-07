@@ -1,7 +1,7 @@
 cabal-version:      3.0
 name:               priceof
 version:            0.1.0.0
-synopsis:           Simple script to delete files
+synopsis:           simple application to consult stock tickers
 
 homepage:
 
