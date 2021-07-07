@@ -1,4 +1,3 @@
-#installdir=$(HOME)/.local/bin
 installdir=build
 install_flags=--installdir=$(installdir) --overwrite-policy=always --install-method=copy
 package=priceof
