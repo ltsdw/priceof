@@ -1,7 +1,7 @@
 # priceof
 
 A simple application that uses Yahoo Finance API
-![Screenshot-07-07-2021_21-11-32](https://user-images.githubusercontent.com/44977415/124843269-233e6900-df81-11eb-9730-c419ef3787e0.png)
+![Screenshot-07-07-2021_23-18-07](https://user-images.githubusercontent.com/44977415/124851793-bc29b000-df92-11eb-8471-f7a4445f4864.png)
 
 # Dependencies
 
