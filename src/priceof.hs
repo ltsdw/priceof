@@ -91,7 +91,7 @@ printAll stcks = do
         aux (sb,pr,cl,pc,cr) = pp (sb, pp'' pr cr, pp'' cl cr, pp'' pc "%")
             where
                 pp'' :: Double -> Text -> String
-                pp'' a b = printf "%.2f %s" a b
+                pp'' a b = printf "%.4f %s" a b
 
 prittyPrint :: IO (Maybe IJSON) -> IO ()
 prittyPrint = (go =<<)
