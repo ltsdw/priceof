@@ -19,6 +19,9 @@ else
 	@echo "installed!"
 endif
 
+clean:
+	@rm -rf $(builddir) dist-newstyle
+
 uninstall:
 ifeq ($(package),)
 	@echo "nothing was done"
@@ -29,6 +32,7 @@ else
 endif
 
 help:
-	@echo "use make install package=package_name or uninstall package=package_name"
-
-
+	@echo "make - to build it"
+	@echo "sudo make install - to install it"
+	@echo "sudo make uninstall - to uninstall it"
+	@echo "make clean - clear out build process"
