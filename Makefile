@@ -7,6 +7,7 @@ all:
 ifeq ($(package),)
 	@echo "nothing was done"
 else
+	@cabal update
 	@cabal v2-install $(package) $(install_flags)
 endif
 
