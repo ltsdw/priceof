@@ -15,6 +15,7 @@ ifeq ($(package),)
 	@echo "nothing was done"
 else
 	@install -Dm755 $(builddir)/$(package) $(installdir)
+	@echo "installed!"
 endif
 
 uninstall:
