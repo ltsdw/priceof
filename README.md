@@ -11,7 +11,13 @@ Check the [Haskell Platform](https://www.haskell.org/platform/) for instruction 
 ```
 git clone https://github.com/ltsdw/priceof.git
 cd priceof
+make
 sudo make install
+```
+
+To run it without installing:
+```
+./build/priceof btc-usd
 ```
 
 # Usage
