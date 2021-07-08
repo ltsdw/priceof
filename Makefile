@@ -1,17 +1,25 @@
-installdir=build
-install_flags=--installdir=$(installdir) --overwrite-policy=always --install-method=copy
+builddir=build
+installdir=/usr/bin/
+install_flags=--installdir=$(builddir) --overwrite-policy=always --install-method=copy
 package=priceof
+
+all:
+ifeq ($(package),)
+	@echo "nothing was done"
+else
+	@cabal v2-install $(package) $(install_flags)
+endif
 
 install:
 ifeq ($(package),)
-	@echo "nothing was done, specify the package to INSTALL: make package=package_name"
+	@echo "nothing was done"
 else
-	cabal v2-install $(package) $(install_flags)
+	@install -Dm755 $(builddir)/$(package) $(installdir)
 endif
 
 uninstall:
 ifeq ($(package),)
-	@echo "nothing was done, specify the package to DELETE: make package=package_name"
+	@echo "nothing was done"
 else
 	@echo "removing $(package)"
 	@rm -rf $(installdir)/$(package)
